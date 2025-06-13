@@ -33,7 +33,7 @@ jobs:
   #Sonar's Job
   sonar:
     #Depends on test's job
-    needs: tests
+#    needs: tests
     name: Build and analyze
     runs-on: ubuntu-latest
     steps:
