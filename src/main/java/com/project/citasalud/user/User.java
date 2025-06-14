@@ -83,4 +83,9 @@ public class User implements UserDetails {
         return dni; // Devuelve el campo dni como "username"
     }
 
+    @Override
+    public String getPassword() {
+        return this.password;
+    }
+
 }
