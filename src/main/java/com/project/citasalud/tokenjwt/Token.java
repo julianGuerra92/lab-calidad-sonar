@@ -1,4 +1,4 @@
-package com.project.citasalud.tokenJWT;
+package com.project.citasalud.tokenjwt;
 
 import com.project.citasalud.user.User;
 import jakarta.persistence.*;
@@ -19,7 +19,7 @@ public class Token {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String token;
+    private String newToken;
 
     private boolean revoked;
 

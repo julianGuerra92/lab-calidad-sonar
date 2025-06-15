@@ -55,9 +55,9 @@ public class JwtService {
         return getClaim(token, Claims::getSubject);
     }
 
-    public boolean isTokenValid(String token, UserDetails UserDetails) {
+    public boolean isTokenValid(String token, UserDetails userDetails) {
         final String username = getDniFromToken(token);
-        return (username.equals(UserDetails.getUsername()) && !isTokenExpired(token));
+        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 
     private Claims getAllClaims(String token){

@@ -3,9 +3,9 @@ package com.project.citasalud.auth;
 import com.project.citasalud.codemfa.VerificationCodeService;
 import com.project.citasalud.jwt.JwtService;
 import com.project.citasalud.mfa.EmailVerificationService;
-import com.project.citasalud.tokenJWT.Token;
-import com.project.citasalud.tokenJWT.TokenRepository;
-import com.project.citasalud.tokenJWT.TokenType;
+import com.project.citasalud.tokenjwt.Token;
+import com.project.citasalud.tokenjwt.TokenRepository;
+import com.project.citasalud.tokenjwt.TokenType;
 import com.project.citasalud.user.User;
 import com.project.citasalud.user.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -196,7 +196,7 @@ class AuthServiceTest {
         verify(tokenRepository).save(captor.capture());
 
         Token savedToken = captor.getValue();
-        assertEquals(jwtToken, savedToken.getToken());
+        assertEquals(jwtToken, savedToken.getNewToken());
         assertEquals(user, savedToken.getUser());
         assertFalse(savedToken.isExpired());
         assertFalse(savedToken.isRevoked());

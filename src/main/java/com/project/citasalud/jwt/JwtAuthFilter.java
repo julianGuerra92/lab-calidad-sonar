@@ -1,7 +1,7 @@
 package com.project.citasalud.jwt;
 
-import com.project.citasalud.tokenJWT.Token;
-import com.project.citasalud.tokenJWT.TokenRepository;
+import com.project.citasalud.tokenjwt.Token;
+import com.project.citasalud.tokenjwt.TokenRepository;
 import com.project.citasalud.user.User;
 import com.project.citasalud.user.UserRepository;
 import jakarta.servlet.FilterChain;

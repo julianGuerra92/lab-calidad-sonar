@@ -61,7 +61,7 @@ class JwtServiceTest {
     }
 
     @Test
-    public void shouldReturnFalseForExpiredToken() throws Exception {
+    void shouldReturnFalseForExpiredToken() throws Exception {
         // Forzamos la expiración manualmente (1 segundo en el pasado)
         setPrivateField(jwtService, "jwtExpiration", -1L); // Expira en el pasado
 

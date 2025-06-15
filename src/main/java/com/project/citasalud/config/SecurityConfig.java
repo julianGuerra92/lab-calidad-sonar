@@ -1,8 +1,8 @@
 package com.project.citasalud.config;
 
 import com.project.citasalud.jwt.JwtAuthFilter;
-import com.project.citasalud.tokenJWT.Token;
-import com.project.citasalud.tokenJWT.TokenRepository;
+import com.project.citasalud.tokenjwt.Token;
+import com.project.citasalud.tokenjwt.TokenRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

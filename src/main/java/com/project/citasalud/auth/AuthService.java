@@ -3,9 +3,9 @@ package com.project.citasalud.auth;
 import com.project.citasalud.codemfa.VerificationCodeService;
 import com.project.citasalud.jwt.JwtService;
 import com.project.citasalud.mfa.EmailVerificationService;
-import com.project.citasalud.tokenJWT.Token;
-import com.project.citasalud.tokenJWT.TokenRepository;
-import com.project.citasalud.tokenJWT.TokenType;
+import com.project.citasalud.tokenjwt.Token;
+import com.project.citasalud.tokenjwt.TokenRepository;
+import com.project.citasalud.tokenjwt.TokenType;
 import com.project.citasalud.user.Role;
 import com.project.citasalud.user.User;
 import com.project.citasalud.user.UserRepository;
@@ -70,7 +70,7 @@ public class AuthService {
     public void saveUserToken(User user, String jwtToken) {
         var token = Token.builder()
                 .user(user)
-                .token(jwtToken)
+                .newToken(jwtToken)
                 .tokenType(TokenType.BEARER)
                 .expired(false)
                 .revoked(false)
