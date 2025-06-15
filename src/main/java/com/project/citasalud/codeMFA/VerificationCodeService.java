@@ -13,7 +13,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class VerificationCodeService {
 
-    @Autowired
     private final VerificationCodeRepository verificationCodeRepository;
 
     public String generateVerificationCode(){
