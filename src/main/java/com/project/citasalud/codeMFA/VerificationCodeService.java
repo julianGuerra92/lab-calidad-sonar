@@ -1,5 +1,6 @@
 package com.project.citasalud.codeMFA;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,10 +10,11 @@ import java.time.Instant;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class VerificationCodeService {
 
     @Autowired
-    private VerificationCodeRepository verificationCodeRepository;
+    private final VerificationCodeRepository verificationCodeRepository;
 
     public String generateVerificationCode(){
         SecureRandom random = new SecureRandom();

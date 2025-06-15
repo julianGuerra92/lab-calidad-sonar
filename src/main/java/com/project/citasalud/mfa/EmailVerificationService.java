@@ -3,6 +3,7 @@ package com.project.citasalud.mfa;
 import com.project.citasalud.codeMFA.VerificationCode;
 import com.project.citasalud.codeMFA.VerificationCodeRepository;
 import com.project.citasalud.codeMFA.VerificationCodeService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -11,14 +12,12 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 
 @Service
+@RequiredArgsConstructor
 public class EmailVerificationService {
 
-    @Autowired
-    private EmailService emailService;
-    @Autowired
-    private VerificationCodeRepository verificationCodeRepository;
-    @Autowired
-    private VerificationCodeService verificationCodeService;
+    private final EmailService emailService;
+    private final VerificationCodeRepository verificationCodeRepository;
+    private final VerificationCodeService verificationCodeService;
     @Value("${EXPIRATION_MINUTES}")
     private long expirationMinutes;
 
