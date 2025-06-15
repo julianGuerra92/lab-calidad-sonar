@@ -10,6 +10,7 @@ import java.lang.reflect.Field;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Base64;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,7 +21,8 @@ public class JwtServiceTest {
     public void setUp() throws Exception {
         jwtService = new JwtService();
 
-        setPrivateField(jwtService, "secretKey", "aGVsbG9zZWNyZXRrZXlmb3J0ZXN0dXNlcnM=");
+        String secureKey = Base64.getEncoder().encodeToString("12345678901234567890123456789012".getBytes());
+        setPrivateField(jwtService, "secretKey", secureKey);
         setPrivateField(jwtService, "jwtExpiration", 1000 * 60 * 60L); // 1 hora
         setPrivateField(jwtService, "refreshExpiration", 1000 * 60 * 60 * 24L); // 1 día
     }

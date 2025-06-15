@@ -61,12 +61,17 @@ public class JwtService {
     }
 
     private Claims getAllClaims(String token){
-        return Jwts
-                .parserBuilder()
-                .setSigningKey(getKey())
-                .build()
-                .parseClaimsJws(token)
-                .getBody();
+        try {
+            return Jwts
+                    .parserBuilder()
+                    .setSigningKey(getKey())
+                    .build()
+                    .parseClaimsJws(token)
+                    .getBody();
+        } catch(io.jsonwebtoken.ExpiredJwtException e) {
+            return e.getClaims();
+        }
+
     }
 
     public <T> T getClaim(String token, Function<Claims, T> claimsResolver){
