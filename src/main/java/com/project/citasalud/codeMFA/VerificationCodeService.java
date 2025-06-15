@@ -23,8 +23,9 @@ public class VerificationCodeService {
     @Transactional
     public boolean verifyCode(String email, String userEnteredCode){
         Optional<VerificationCode> codeOptional = verificationCodeRepository.findByUserEmail(email);
-        if (codeOptional.isEmpty())
+        if (codeOptional.isEmpty()) {
             return false;
+        }
 
         VerificationCode code = codeOptional.get();
 
