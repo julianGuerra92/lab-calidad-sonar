@@ -1,0 +1,93 @@
+package com.project.citasalud.jwt;
+
+import io.jsonwebtoken.Claims;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.lang.reflect.Field;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+public class JwtServiceTest {
+    private JwtService jwtService;
+
+    @BeforeEach
+    public void setUp() throws Exception {
+        jwtService = new JwtService();
+
+        setPrivateField(jwtService, "secretKey", "aGVsbG9zZWNyZXRrZXlmb3J0ZXN0dXNlcnM=");
+        setPrivateField(jwtService, "jwtExpiration", 1000 * 60 * 60L); // 1 hora
+        setPrivateField(jwtService, "refreshExpiration", 1000 * 60 * 60 * 24L); // 1 día
+    }
+
+    private void setPrivateField(Object target, String fieldName, Object value) throws Exception {
+        Field field = target.getClass().getDeclaredField(fieldName);
+        field.setAccessible(true);
+        field.set(target, value);
+    }
+
+    private UserDetails getMockUser() {
+        return User.builder()
+                .username("123456789")
+                .password("password")
+                .authorities(List.of())
+                .build();
+    }
+
+    @Test
+    public void shouldGenerateAndValidateToken() {
+        UserDetails user = getMockUser();
+        String token = jwtService.getToken(user);
+
+        assertNotNull(token);
+        assertTrue(jwtService.isTokenValid(token, user));
+        assertEquals("123456789", jwtService.getDniFromToken(token));
+    }
+
+    @Test
+    public void shouldGenerateRefreshToken() {
+        UserDetails user = getMockUser();
+        String token = jwtService.getRefreshToken(user);
+
+        assertNotNull(token);
+        assertTrue(jwtService.isTokenValid(token, user));
+    }
+
+    @Test
+    public void shouldReturnFalseForExpiredToken() throws Exception {
+        setPrivateField(jwtService, "jwtExpiration", 1L); // Token expira en 1 ms
+        UserDetails user = getMockUser();
+        String token = jwtService.getToken(user);
+
+        Thread.sleep(2); // Esperar a que expire
+        assertFalse(jwtService.isTokenValid(token, user));
+    }
+
+    @Test
+    public void shouldGetCustomClaim() throws Exception {
+        UserDetails user = getMockUser();
+        HashMap<String, Object> claims = new HashMap<>();
+        claims.put("role", "USER");
+
+        long expiration = 1000 * 60 * 60L; // 1 hora
+        setPrivateField(jwtService, "jwtExpiration", expiration);
+
+        String token = jwtService.buildToken(claims, user, expiration);
+
+        String role = jwtService.getClaim(token, c -> c.get("role", String.class));
+        assertEquals("USER", role);
+    }
+
+    @Test
+    public void shouldGetExpirationDate() {
+        UserDetails user = getMockUser();
+        String token = jwtService.getToken(user);
+        Date expiration = jwtService.getClaim(token, Claims::getExpiration);
+        assertNotNull(expiration);
+    }
+}
