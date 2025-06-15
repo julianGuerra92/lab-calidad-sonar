@@ -17,7 +17,7 @@ public class CodeEmailRequest {
     @Email(message = "Invalid email address")
     String email;
     @NotBlank(message = "Code is required")
-    @Pattern(regexp = "^[0-9]{6}$",
+    @Pattern(regexp = "^\\d{6}$",
             message = "The code must contain 6 digits")
     String code;
 }

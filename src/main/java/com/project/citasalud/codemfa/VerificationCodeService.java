@@ -1,7 +1,6 @@
-package com.project.citasalud.codeMFA;
+package com.project.citasalud.codemfa;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

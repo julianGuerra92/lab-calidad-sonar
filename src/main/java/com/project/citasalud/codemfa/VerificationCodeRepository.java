@@ -1,4 +1,4 @@
-package com.project.citasalud.codeMFA;
+package com.project.citasalud.codemfa;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

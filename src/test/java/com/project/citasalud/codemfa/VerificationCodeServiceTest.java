@@ -1,4 +1,4 @@
-package com.project.citasalud.codeMFA;
+package com.project.citasalud.codemfa;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,7 +9,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class VerificationCodeServiceTest {
+class VerificationCodeServiceTest {
     @InjectMocks
     private VerificationCodeService verificationCodeService;
 

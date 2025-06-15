@@ -1,4 +1,4 @@
-package com.project.citasalud.codeMFA;
+package com.project.citasalud.codemfa;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

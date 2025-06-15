@@ -1,8 +1,8 @@
 package com.project.citasalud.mfa;
 
-import com.project.citasalud.codeMFA.VerificationCode;
-import com.project.citasalud.codeMFA.VerificationCodeRepository;
-import com.project.citasalud.codeMFA.VerificationCodeService;
+import com.project.citasalud.codemfa.VerificationCode;
+import com.project.citasalud.codemfa.VerificationCodeRepository;
+import com.project.citasalud.codemfa.VerificationCodeService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class EmailVerificationTest {
+class EmailVerificationTest {
 
     @Mock
     private EmailService emailService;
@@ -38,7 +38,7 @@ public class EmailVerificationTest {
     }
 
     @Test
-    public void shouldSendVerificationCodeAndSaveIt() {
+    void shouldSendVerificationCodeAndSaveIt() {
         String email = "test@example.com";
         String code = "123456";
 

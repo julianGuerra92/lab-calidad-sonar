@@ -14,11 +14,11 @@ import java.util.Base64;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class JwtServiceTest {
+class JwtServiceTest {
     private JwtService jwtService;
 
     @BeforeEach
-    public void setUp() throws Exception {
+    void setUp() throws Exception {
         jwtService = new JwtService();
 
         String secureKey = Base64.getEncoder().encodeToString("12345678901234567890123456789012".getBytes());
@@ -42,7 +42,7 @@ public class JwtServiceTest {
     }
 
     @Test
-    public void shouldGenerateAndValidateToken() {
+    void shouldGenerateAndValidateToken() {
         UserDetails user = getMockUser();
         String token = jwtService.getToken(user);
 
@@ -52,7 +52,7 @@ public class JwtServiceTest {
     }
 
     @Test
-    public void shouldGenerateRefreshToken() {
+    void shouldGenerateRefreshToken() {
         UserDetails user = getMockUser();
         String token = jwtService.getRefreshToken(user);
 
@@ -62,16 +62,19 @@ public class JwtServiceTest {
 
     @Test
     public void shouldReturnFalseForExpiredToken() throws Exception {
-        setPrivateField(jwtService, "jwtExpiration", 1L); // Token expira en 1 ms
+        // Forzamos la expiración manualmente (1 segundo en el pasado)
+        setPrivateField(jwtService, "jwtExpiration", -1L); // Expira en el pasado
+
         UserDetails user = getMockUser();
         String token = jwtService.getToken(user);
 
-        Thread.sleep(2); // Esperar a que expire
-        assertFalse(jwtService.isTokenValid(token, user));
+        boolean isValid = jwtService.isTokenValid(token, user);
+
+        assertFalse(isValid);
     }
 
     @Test
-    public void shouldGetCustomClaim() throws Exception {
+    void shouldGetCustomClaim() throws Exception {
         UserDetails user = getMockUser();
         HashMap<String, Object> claims = new HashMap<>();
         claims.put("role", "USER");
@@ -86,7 +89,7 @@ public class JwtServiceTest {
     }
 
     @Test
-    public void shouldGetExpirationDate() {
+    void shouldGetExpirationDate() {
         UserDetails user = getMockUser();
         String token = jwtService.getToken(user);
         Date expiration = jwtService.getClaim(token, Claims::getExpiration);

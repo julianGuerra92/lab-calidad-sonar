@@ -1,6 +1,6 @@
 package com.project.citasalud.auth;
 
-import com.project.citasalud.codeMFA.VerificationCodeService;
+import com.project.citasalud.codemfa.VerificationCodeService;
 import com.project.citasalud.jwt.JwtService;
 import com.project.citasalud.mfa.EmailVerificationService;
 import com.project.citasalud.tokenJWT.Token;
@@ -22,7 +22,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class AuthServiceTest {
+class AuthServiceTest {
 
     @InjectMocks
     private AuthService authService;

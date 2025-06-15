@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class LoginRequest {
     @NotBlank(message = "Cédula is required")
-    @Pattern(regexp = "^[0-9]{9,10}$",
+    @Pattern(regexp = "^\\d{9,10}$",
             message = "Cédula must contain only digits")
     String dni;
     @NotBlank(message = "Password is required")

@@ -1,10 +1,9 @@
 package com.project.citasalud.mfa;
 
-import com.project.citasalud.codeMFA.VerificationCode;
-import com.project.citasalud.codeMFA.VerificationCodeRepository;
-import com.project.citasalud.codeMFA.VerificationCodeService;
+import com.project.citasalud.codemfa.VerificationCode;
+import com.project.citasalud.codemfa.VerificationCodeRepository;
+import com.project.citasalud.codemfa.VerificationCodeService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,6 @@
 package com.project.citasalud.auth;
 
-import com.project.citasalud.codeMFA.VerificationCodeService;
+import com.project.citasalud.codemfa.VerificationCodeService;
 import com.project.citasalud.jwt.JwtService;
 import com.project.citasalud.mfa.EmailVerificationService;
 import com.project.citasalud.tokenJWT.Token;
